@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student List | Quiz 3 Django</title>
+    <link rel="stylesheet" href="{% static 'main/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Student Records</h1>
+        <p>Water Bonnie University</p>
+    </header>
+
+    <main>
+        {% if students %}
+        <div class="grid">
+            {% for student in students %}
+            <div class="card">
+                <div class="avatar">{{ student.first_name|slice:":1" }}{{ student.last_name|slice:":1" }}</div>
+                <h2>{{ student.first_name }} {{ student.last_name }}</h2>
+                <p class="course">{{ student.course }}</p>
+                <p>Age: {{ student.age }}</p>
+                <p class="email">{{ student.email }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="empty">No students yet. Add some in the Django admin.</p>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>Total students: {{ students|length }}</p>
+    </footer>
+</body>
+</html>
